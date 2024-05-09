@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .bbb {
+            width: 250px;
+            height: 50px;
+            background-color: black;
+            color: white;
+            margin: 20px;
+            padding: 10px;
+            border-radius: 10px
+        }
+    </style>
+</head>
+<body>
+<button onclick="sangPhai()" class="bbb">Sang phải</button>
+<button onclick="sangTrai()" class="bbb">Sang trái</button>
+<button onclick="xuongDuoi()" class="bbb">Xuống dưới</button>
+<button onclick="lenTren()" class="bbb">Lên trên</button>
+<button onclick="tuDo()" class="bbb">Ngẫu Nhiên</button>
+<button onclick="xuyenNgang()" class="bbb">Xuyên Ngang</button>
+<button onclick="thanhHCN()" class="bbb">Thành HCN</button>
+
+
+<img src="Nv.jpg" alt="" style="width: 200px; height: 120px; position: absolute; top: 300px; left: 400px" id="aaa">
+
+<script>
+
+    let s = 3;
+    let s1 = 3;
+
+    function sangPhai() {
+        setInterval(() => {
+            let son = document.getElementById("aaa");
+            son.style.left = parseInt(son.style.left) + s + "px";
+            if (parseInt(son.style.left) > window.innerWidth) {
+                s = -3;
+            }
+            if (parseInt(son.style.left) < 0) {
+                s = 3;
+            }
+
+        }, 1)
+    }
+
+    function sangTrai() {
+        setInterval(() => {
+            let son = document.getElementById("aaa");
+            son.style.left = parseInt(son.style.left) - s + "px";
+            if (parseInt(son.style.left) > window.innerWidth) {
+                s = 3;
+            }
+            if (parseInt(son.style.left) < 0) {
+                s = -3;
+            }
+        }, 1)
+    }
+
+    function xuongDuoi() {
+        setInterval(() => {
+            let son = document.getElementById("aaa");
+            son.style.top = parseInt(son.style.top) + s + "px";
+            if (parseInt(son.style.top) > window.innerHeight) {
+                s = -3;
+            }
+            if (parseInt(son.style.top) < 100) {
+                s = 3;
+            }
+        }, 1)
+    }
+
+    function lenTren() {
+        setInterval(() => {
+            let son = document.getElementById("aaa");
+            son.style.top = parseInt(son.style.top) - s + "px";
+            if (parseInt(son.style.top) > window.innerHeight) {
+                s = 3;
+            }
+            if (parseInt(son.style.top) < 100) {
+                s = -3;
+            }
+        }, 1)
+    }
+
+    function tuDo() {
+
+        setInterval(() => {
+            let son = document.getElementById("aaa");
+            son.style.left = parseInt(son.style.left) + s + "px";
+            son.style.top = parseInt(son.style.top) + s1 + "px";
+            if (parseInt(son.style.left) <= 0 || parseInt(son.style.left) >= window.innerWidth - son.width) {
+                s = -s;
+            }
+            if (parseInt(son.style.top) <= 200 || parseInt(son.style.top) >= window.innerHeight - son.height) {
+                s1 = -s1;
+            }
+        }, 1)
+    }
+
+    function xuyenNgang() {
+
+        setInterval(() => {
+            let son = document.getElementById("aaa");
+            son.style.left = parseInt(son.style.left) + s + "px";
+            if (parseInt(son.style.left) >= window.innerWidth) {
+                son.style.left = 0;
+            }
+
+        }, 1)
+    }
+
+    function thanhHCN() {
+        let diChuyen = "phai";
+
+        setInterval(() => {
+            let son = document.getElementById("aaa");
+            if (diChuyen === 'phai' && parseInt(son.style.left) < window.innerWidth - son.width) {
+                son.style.left = parseInt(son.style.left) + s + 'px';
+            } else if (diChuyen === 'phai') {
+                diChuyen = 'len';
+            }
+            if (diChuyen === 'len' && parseInt(son.style.top) > 200) {
+                son.style.top = parseInt(son.style.top) - s + 'px';
+            } else if (diChuyen === 'len') {
+                diChuyen = 'trai';
+            }
+            if (diChuyen === 'trai' && parseInt(son.style.left) > 0) {
+                son.style.left = parseInt(son.style.left) - s + 'px';
+            } else if (diChuyen === 'trai') {
+                diChuyen = 'xuong';
+            }
+
+            if (diChuyen === 'xuong' && parseInt(son.style.top) < window.innerHeight - son.height) {
+                son.style.top = parseInt(son.style.top) + s + 'px';
+            } else if (diChuyen === 'xuong') {
+                diChuyen = 'phai';
+            }
+        }, 1)
+    }
+
+</script>
+</body>
+</html>
